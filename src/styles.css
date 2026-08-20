@@ -1,0 +1,159 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+/* ==========================================================
+   PELMATECH DESIGN TOKENS — do not add arbitrary brand colors.
+   All new UI must derive from the tokens below.
+   ========================================================== */
+:root {
+  --background: oklch(0.97 0.005 100);
+  --foreground: oklch(0.18 0.01 100);
+  --muted: oklch(0.93 0.005 100);
+  --muted-foreground: oklch(0.45 0.01 100);
+  /* 2026-08-14: nudged darker (0.94 -> 0.925) with a touch more chroma so
+     bg-surface sections read as a clearer step down from bg-background —
+     part of the "background relief" pass (Option C), requested because
+     the site felt too flat/white. */
+  --surface: oklch(0.925 0.008 100);
+  --accent: oklch(0.55 0.12 155);
+  --accent-foreground: oklch(0.98 0 0);
+  /* Pale accent-tinted wash for one "breathing" section band (Option C).
+     Derived from --accent, not a new brand color. */
+  --accent-tint: color-mix(in oklch, var(--accent) 8%, var(--background));
+  --border: oklch(0.88 0.005 100);
+  --header-bg: oklch(0.25 0.01 100 / 0.85);
+
+  /* Fine film-grain texture layered under the page background (Option B),
+     same "background relief" pass. A tiny 64x64 pre-rendered grayscale
+     noise PNG (values 230-255, i.e. just-off-white), multiplied onto
+     --background so only the darker specks read as grain. (An SVG
+     feTurbulence filter was tried first but rendered as a flat, invisible
+     no-op in this stack's headless-Chromium screenshot pipeline — a
+     static raster tile is the reliable cross-browser choice.) */
+  --noise-bg: url("data:image/png;base64,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");
+
+  /* Font system */
+  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-display: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* TeamSection / TeamCarousel only — protected, do not replace */
+  --font-team: "TT Hoves", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-surface: var(--surface);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-tint: var(--accent-tint);
+  --color-border: var(--border);
+  --color-header-bg: var(--header-bg);
+
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+  --font-team: var(--font-team);
+}
+
+* {
+  box-sizing: border-box;
+  border-color: var(--color-border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body,
+#app {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--background);
+  background-image: var(--noise-bg);
+  background-repeat: repeat;
+  background-size: 64px 64px;
+  background-blend-mode: multiply;
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  letter-spacing: -0.025em;
+}
+
+/* 2026-08-14 audit fix — unified keyboard focus style.
+   Before this, only components/ui/button.tsx, input.tsx, and textarea.tsx
+   had a custom focus ring (ring-accent); every other link/button site-wide
+   (header nav, footer, filter chips, tabs, the FAQ accordion, card links…)
+   fell back to the browser's plain default outline, which is functional
+   for keyboard users but visually inconsistent with the brand. This single
+   rule covers everything at once, using the same --accent token so it's
+   not a new brand color. Element selectors here are deliberately low-
+   specificity so they never fight the ring-based focus style already on
+   Button/Input/Textarea (those set focus-visible:outline-none, which wins
+   on the `outline` property via higher (class) specificity — this rule
+   simply never applies there). */
+a:focus-visible,
+button:focus-visible,
+[role='button']:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* 2026-08-14 — site-wide nav/link animation pass (site owner request).
+   Reusable "draw-in" underline for plain text links (footer columns, back
+   links, etc.) — a background-size trick rather than a real border/underline
+   so it animates smoothly instead of just appearing. Kept as a utility class
+   (not a Tailwind arbitrary value) since the timing/easing needs to match
+   the site's primary easing curve exactly. Low-specificity single class
+   selector, unlayered like the rest of this file — never fights component
+   classes, only adds the underline. */
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition: background-size 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.link-underline:hover {
+  background-size: 100% 1px;
+}
+
+/* Respect reduced-motion preferences for the hover/tap micro-animations
+   added in this pass (pill slide, icon nudges, scale feedback, underline
+   draw) — the standard universal reset, so none of the new Tailwind
+   `transition`/`duration`/`hover:scale-*` utilities (which don't respect
+   this preference on their own) animate for users who've asked for less
+   motion. Functionality and focus states are unaffected, only timing is —
+   an element still reaches its hover/active end state, just instantly. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
