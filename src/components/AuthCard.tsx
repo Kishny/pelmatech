@@ -277,7 +277,7 @@ export function AuthCard({ initialView }: { initialView: View }) {
                 {loginSubmitting ? t.pages.login.loading : t.pages.login.cta}
               </Button>
 
-              <button type="button" className="self-start text-sm text-muted-foreground transition hover:text-foreground">
+              <button type="button" className="self-center text-sm text-muted-foreground transition hover:text-foreground">
                 {t.common.forgotPassword}
               </button>
             </form>
