@@ -1,0 +1,194 @@
+/*
+ * AuthCard.css — sliding sign-in/sign-up card mechanics.
+ *
+ * 2026-08-27: adapted from a reference mockup the site owner supplied
+ * (a vanilla HTML/CSS/JS "Sign In / Sign Up" card with a sliding tab
+ * indicator, a colored hero panel that slides between two headings, and
+ * a form panel that slides between two forms). The *mechanics* — the
+ * three CSS custom properties driving the three independent slides, the
+ * resize-disables-transition trick, the >=690px layout switch — are kept
+ * as close to the original as possible. What changed:
+ *   - Colors now come from Pelmatech's own tokens (--accent / --border /
+ *     --background / --muted-foreground) instead of the mockup's
+ *     hardcoded indigo palette, so this stays on-brand.
+ *   - The form panel's height is NOT fixed like the original (its signup
+ *     side is a multi-step wizard with variable content length, not a
+ *     fixed 3-field form) — AuthCard.tsx measures the active panel and
+ *     writes it into --pm-ac-form-h, which this file animates.
+ *   - Classes are prefixed `pm-ac-` to stay collision-safe in a
+ *     Tailwind-first codebase that otherwise has no other plain-CSS
+ *     component files.
+ *
+ * JS contract (see AuthCard.tsx): the root .pm-ac element gets three
+ * inline custom properties set on view change —
+ *   --pm-ac-forms  : 0% (signin) | -100% (signup)      → slides .pm-ac-forms
+ *   --pm-ac-hero   : 0% (signin) | -100% (signup)      → slides .pm-ac-hero-inner
+ *   --pm-ac-active : 33.33% (signin) | 66.66% (signup) → moves the tab indicator
+ *   --pm-ac-form-h : measured px height of the active panel
+ * plus a `.resizing` class toggled briefly on window resize, exactly like
+ * the original, so a layout-driven reflow doesn't animate.
+ */
+
+.pm-ac {
+  position: relative;
+  width: 100%;
+  max-width: 30rem;
+  border-radius: 1.75rem;
+  border: 1px solid var(--border);
+  background: var(--background);
+  box-shadow: 0 24px 60px -24px oklch(0.18 0.01 100 / 0.18);
+  overflow: hidden;
+}
+
+.pm-ac-nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  height: 88px;
+  padding: 20px 16px 0;
+  list-style: none;
+  margin: 0;
+}
+
+.pm-ac-nav li {
+  flex: 1 1 auto;
+  display: grid;
+  place-items: center;
+}
+
+.pm-ac-nav li:first-child {
+  flex: 0 0 auto;
+  padding-right: 8px;
+}
+
+.pm-ac-nav button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  background: transparent;
+  border: 0;
+  padding: 8px 4px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.pm-ac-nav button:not(.active):hover {
+  color: var(--foreground);
+  opacity: 0.85;
+}
+
+.pm-ac-nav button.active {
+  color: var(--accent);
+}
+
+.pm-ac-nav button {
+  position: relative;
+}
+
+.pm-ac-tab-indicator {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: -8px;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--accent);
+}
+
+.pm-ac-hero {
+  position: relative;
+  overflow: hidden;
+  height: 168px;
+  margin: 0 16px;
+  border-radius: 20px;
+  background: var(--accent);
+}
+
+.pm-ac-hero-inner {
+  position: absolute;
+  top: var(--pm-ac-hero, 0%);
+  left: 0;
+  right: 0;
+  transition: 0.5s ease-in-out;
+}
+
+.pm-ac.resizing .pm-ac-hero-inner {
+  transition: none;
+}
+
+.pm-ac-hero-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  height: 168px;
+  padding: 20px 24px;
+}
+
+.pm-ac-hero-content h2 {
+  color: var(--accent-foreground);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.pm-ac-hero-content p {
+  color: var(--accent-foreground);
+  opacity: 0.8;
+  font-size: 0.8125rem;
+  margin: 6px 0 0;
+  max-width: 15rem;
+}
+
+.pm-ac-hero-art {
+  flex: 0 0 auto;
+  width: 76px;
+  height: 76px;
+  color: var(--accent-foreground);
+}
+
+.pm-ac-form {
+  position: relative;
+  overflow: hidden;
+  height: var(--pm-ac-form-h, auto);
+  transition: height 0.35s ease-in-out;
+}
+
+.pm-ac.resizing .pm-ac-form {
+  transition: none;
+}
+
+.pm-ac-forms {
+  position: relative;
+  display: flex;
+  width: 200%;
+  left: var(--pm-ac-forms, 0%);
+  transition: 0.5s ease-in-out;
+}
+
+.pm-ac.resizing .pm-ac-forms {
+  transition: none;
+}
+
+.pm-ac-panel {
+  width: 50%;
+  flex: 0 0 auto;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+  .pm-ac-panel {
+    padding: 28px 32px 32px;
+  }
+}

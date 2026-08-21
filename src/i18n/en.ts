@@ -583,6 +583,21 @@ export const en = {
       confirmEmailBody: "We've sent a confirmation link to your email address. Click it to activate your account, then log in.",
       goToLogin: 'Go to login',
     },
+    // 2026-08-27: shared sign in / sign up card (AuthCard.tsx) — the two
+    // tabs slide between the same panel instead of navigating to separate
+    // pages, so copy for both views lives in one place.
+    authCard: {
+      signInTab: 'Sign in',
+      signUpTab: 'Sign up',
+      welcomeHeading: 'Welcome back.',
+      welcomeBody: 'Enter your details to access your dashboard.',
+      joinHeading: 'Create your account.',
+      joinBody: 'Join Pelmatech in just a few steps.',
+      newHereText: 'New here?',
+      newHereCta: 'Create an account',
+      alreadyHaveAccountText: 'Already have an account?',
+      alreadyHaveAccountCta: 'Sign in',
+    },
     dashboard: {
       greetingHello: 'Good morning',
       greeting: ['Good morning, Alex.', "Here's your health today."],

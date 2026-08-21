@@ -602,6 +602,21 @@ export const fr: Dictionary = {
       confirmEmailBody: 'Nous avons envoyé un lien de confirmation à votre adresse email. Cliquez dessus pour activer votre compte, puis connectez-vous.',
       goToLogin: 'Aller à la connexion',
     },
+    // 2026-08-27 : carte connexion/inscription partagée (AuthCard.tsx) —
+    // les deux onglets glissent dans le même panneau au lieu de naviguer
+    // vers deux pages séparées, donc les textes des deux vues vivent ici.
+    authCard: {
+      signInTab: 'Connexion',
+      signUpTab: 'Inscription',
+      welcomeHeading: 'Content de vous revoir.',
+      welcomeBody: 'Entrez vos identifiants pour accéder à votre espace.',
+      joinHeading: 'Créez votre compte.',
+      joinBody: 'Rejoignez Pelmatech en quelques étapes.',
+      newHereText: 'Nouveau ici ?',
+      newHereCta: 'Créer un compte',
+      alreadyHaveAccountText: 'Vous avez déjà un compte ?',
+      alreadyHaveAccountCta: 'Se connecter',
+    },
     dashboard: {
       greetingHello: 'Bonjour',
       greeting: ['Bonjour, Alex.', 'Voici votre santé aujourd’hui.'],
