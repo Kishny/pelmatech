@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Link, useNavigate } from '@tanstack/react-router'
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import {
   CalendarClock,
   Home,
@@ -48,6 +49,7 @@ export function DoctorSidebar({ active, onSelect, authedUser, mobileOpen, onMobi
   const t = useTranslation()
   const nav = t.pages.doctorDashboard.shell
   const navigate = useNavigate()
+  const prefersReducedMotion = useReducedMotion()
   const [accountMenuOpen, setAccountMenuOpen] = React.useState(false)
 
   async function handleLogout() {
@@ -102,10 +104,17 @@ export function DoctorSidebar({ active, onSelect, authedUser, mobileOpen, onMobi
               type="button"
               onClick={() => handleSelect(key)}
               className={cn(
-                'flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition',
-                active === key ? 'bg-accent-tint text-accent' : 'text-muted-foreground hover:bg-muted hover:text-foreground',
+                'relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition',
+                active === key ? 'text-accent' : 'text-muted-foreground hover:bg-muted hover:text-foreground',
               )}
             >
+              {active === key && (
+                <motion.span
+                  layoutId="doctor-sidebar-active"
+                  className="absolute inset-0 -z-10 rounded-xl bg-accent-tint"
+                  transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                />
+              )}
               <Icon className="h-4 w-4" />
               {label}
             </button>
@@ -138,18 +147,26 @@ export function DoctorSidebar({ active, onSelect, authedUser, mobileOpen, onMobi
             </span>
           </button>
 
-          {accountMenuOpen && (
-            <div className="absolute bottom-full left-0 mb-2 w-full rounded-xl border border-border bg-background p-1.5 shadow-lg">
-              <button
-                type="button"
-                onClick={handleLogout}
-                className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm text-foreground transition hover:bg-muted"
+          <AnimatePresence>
+            {accountMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: 6, scale: 0.97 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 6, scale: 0.97 }}
+                transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute bottom-full left-0 mb-2 w-full rounded-xl border border-border bg-background p-1.5 shadow-lg"
               >
-                <LogOut className="h-4 w-4" />
-                {t.common.logout}
-              </button>
-            </div>
-          )}
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                  className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm text-foreground transition hover:bg-muted"
+                >
+                  <LogOut className="h-4 w-4" />
+                  {t.common.logout}
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </aside>
     </>
