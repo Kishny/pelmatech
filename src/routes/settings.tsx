@@ -1,6 +1,7 @@
 import * as React from 'react'
-import { createFileRoute, redirect, useRouter } from '@tanstack/react-router'
+import { createFileRoute, Link, redirect, useRouter } from '@tanstack/react-router'
 import {
+  ArrowLeft,
   Bell,
   ChevronRight,
   HeartPulse,
@@ -82,6 +83,7 @@ function Settings() {
 
   const profileSection = page.sections[0]
   const otherSections = page.sections.slice(1)
+  const dashboardHref = authedUser.role === 'doctor' ? '/doctor-dashboard' : '/dashboard'
 
   async function handleSave(e: React.FormEvent) {
     e.preventDefault()
@@ -129,7 +131,15 @@ function Settings() {
     <div className="bg-background text-foreground">
       <Header variant="internal" />
       <main className="pt-40 pb-32 px-8 md:px-12">
-        <AnimatedHeading as="h1" className="text-4xl md:text-5xl font-medium leading-[1.05]">
+        <Link
+          to={dashboardHref}
+          className="inline-flex items-center gap-2 text-sm text-muted-foreground transition hover:text-foreground"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          {page.backToDashboard}
+        </Link>
+
+        <AnimatedHeading as="h1" className="mt-4 text-4xl md:text-5xl font-medium leading-[1.05]">
           {page.heading}
         </AnimatedHeading>
 

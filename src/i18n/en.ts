@@ -763,6 +763,9 @@ export const en = {
     },
     settings: {
       heading: 'Settings',
+      // 2026-08-27: back link to the caller's own dashboard (doctor or
+      // patient) — settings has no other way back once you're in it.
+      backToDashboard: 'Back to dashboard',
       // 2026-08-14 audit fix: these rows previously looked fully
       // interactive (hover + chevron) but had no handler at all, including
       // "Delete account" — this label makes the demo state honest instead

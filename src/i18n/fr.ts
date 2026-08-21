@@ -782,6 +782,9 @@ export const fr: Dictionary = {
     },
     settings: {
       heading: 'Paramètres',
+      // 2026-08-27: lien de retour vers le dashboard de l'utilisateur
+      // (médecin ou patient) — Paramètres n'a sinon aucun moyen d'en sortir.
+      backToDashboard: 'Retour au dashboard',
       // 2026-08-14 audit fix: ces lignes avaient l'air pleinement
       // interactives (survol + chevron) mais n'avaient aucun handler, y
       // compris « Supprimer le compte » — ce badge rend l'état de démo
