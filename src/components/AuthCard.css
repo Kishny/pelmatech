@@ -42,7 +42,7 @@
 
 @media (min-width: 720px) {
   .pm-ac {
-    max-width: 44rem;
+    max-width: 50rem;
   }
 }
 
@@ -140,8 +140,13 @@
 
 @media (min-width: 720px) {
   .pm-ac-hero {
-    width: 200px;
-    height: var(--pm-ac-hero-h, 300px);
+    /* 2026-08-27: widened 15% (200px -> 230px) and synced to the form
+       column's own measured height (--pm-ac-form-h, set by AuthCard.tsx)
+       instead of a separate --pm-ac-hero-h, so the green panel always
+       fills the same height as the form beside it, however tall the
+       active wizard step is. */
+    width: 230px;
+    height: var(--pm-ac-form-h, 300px);
     margin: 24px 0 24px 24px;
   }
 }
@@ -173,7 +178,7 @@
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    height: var(--pm-ac-hero-h, 300px);
+    height: var(--pm-ac-form-h, 300px);
     padding: 28px 20px;
     gap: 20px;
   }
