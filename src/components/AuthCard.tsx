@@ -215,26 +215,27 @@ export function AuthCard({ initialView }: { initialView: View }) {
         </li>
       </ul>
 
-      <div className="pm-ac-hero">
-        <div className="pm-ac-hero-inner">
-          <div className="pm-ac-hero-content">
-            <div>
-              <h2>{card.welcomeHeading}</h2>
-              <p>{card.welcomeBody}</p>
+      <div className="pm-ac-body">
+        <div className="pm-ac-hero">
+          <div className="pm-ac-hero-inner">
+            <div className="pm-ac-hero-content">
+              <WelcomeBackIllustration className="pm-ac-hero-art" />
+              <div>
+                <h2>{card.welcomeHeading}</h2>
+                <p>{card.welcomeBody}</p>
+              </div>
             </div>
-            <WelcomeBackIllustration className="pm-ac-hero-art" />
-          </div>
-          <div className="pm-ac-hero-content">
-            <div>
-              <h2>{card.joinHeading}</h2>
-              <p>{card.joinBody}</p>
+            <div className="pm-ac-hero-content">
+              <JoinUsIllustration className="pm-ac-hero-art" />
+              <div>
+                <h2>{card.joinHeading}</h2>
+                <p>{card.joinBody}</p>
+              </div>
             </div>
-            <JoinUsIllustration className="pm-ac-hero-art" />
           </div>
         </div>
-      </div>
 
-      <div className="pm-ac-form">
+        <div className="pm-ac-form">
         <div className="pm-ac-forms">
           <div ref={signinPanelRef} className="pm-ac-panel">
             <p className="mb-5 text-sm text-muted-foreground">
@@ -440,6 +441,7 @@ export function AuthCard({ initialView }: { initialView: View }) {
               </>
             )}
           </div>
+        </div>
         </div>
       </div>
     </div>

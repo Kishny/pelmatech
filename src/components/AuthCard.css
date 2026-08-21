@@ -40,6 +40,31 @@
   overflow: hidden;
 }
 
+@media (min-width: 720px) {
+  .pm-ac {
+    max-width: 44rem;
+  }
+}
+
+/*
+ * 2026-08-27: holds the hero panel + form side by side on wider screens
+ * (site owner: "le côté vert [...] je veux que ça soit sur le côté
+ * gauche du formulaire", matching the reference's desktop two-column
+ * layout). Below 720px it stacks — hero banner on top, form below —
+ * since a side-by-side split doesn't have room on a phone-width card.
+ */
+.pm-ac-body {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 720px) {
+  .pm-ac-body {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
 .pm-ac-nav {
   position: relative;
   display: flex;
@@ -110,6 +135,15 @@
   margin: 0 16px;
   border-radius: 20px;
   background: var(--accent);
+  flex: 0 0 auto;
+}
+
+@media (min-width: 720px) {
+  .pm-ac-hero {
+    width: 200px;
+    height: var(--pm-ac-hero-h, 300px);
+    margin: 24px 0 24px 24px;
+  }
 }
 
 .pm-ac-hero-inner {
@@ -134,6 +168,17 @@
   padding: 20px 24px;
 }
 
+@media (min-width: 720px) {
+  .pm-ac-hero-content {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    height: var(--pm-ac-hero-h, 300px);
+    padding: 28px 20px;
+    gap: 20px;
+  }
+}
+
 .pm-ac-hero-content h2 {
   color: var(--accent-foreground);
   font-size: 1.25rem;
@@ -150,6 +195,13 @@
   max-width: 15rem;
 }
 
+@media (min-width: 720px) {
+  .pm-ac-hero-content p {
+    margin: 8px 0 0;
+    max-width: none;
+  }
+}
+
 .pm-ac-hero-art {
   flex: 0 0 auto;
   width: 76px;
@@ -162,6 +214,8 @@
   overflow: hidden;
   height: var(--pm-ac-form-h, auto);
   transition: height 0.35s ease-in-out;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .pm-ac.resizing .pm-ac-form {
