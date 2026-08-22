@@ -618,6 +618,33 @@ export const en = {
         { name: 'Vitamin D — 1 tablet', time: '08:00' },
         { name: 'Atorvastatin — 20mg', time: '21:00' },
       ],
+      // 2026-08-21: "shell" strings for the ProHealth-style Overview rebuild
+      // (site-owner-supplied mockup). Kept separate from the keys above so
+      // nothing already wired elsewhere had to change.
+      shell: {
+        tabOverview: 'Overview',
+        tabDocuments: 'Documents',
+        tabMessages: 'Messages',
+        tabLabs: 'Labs',
+        comingSoon: 'Coming soon',
+        comingSoonBody: "This feature isn't built yet — it's coming to your dashboard soon.",
+        searchPlaceholder: 'Search a medication…',
+        consultationCta: 'Consultation',
+        dailyGoalLabel: 'Daily goal',
+        connectedTracking: 'Connected tracking',
+        medicationsTitle: 'Medications',
+        activityLabel: 'Activity (7 days)',
+        healthReportTitle: 'Health summary',
+        specializedTitle: 'Specialist follow-up',
+        vitalsHeartRate: 'Heart rate',
+        vitalsTemperature: 'Temperature',
+        vitalsOxygen: 'Oxygen (SpO2)',
+        viewMedicalProfile: 'View my medical profile',
+        heroAlt: 'Patient staying active, tracked with Pelmatech',
+        heartRateValue: '72 bpm',
+        temperatureValue: '36.8°C',
+        oxygenValue: '98%',
+      },
     },
     appointments: {
       heading: ['Book care without', 'the back-and-forth.'],

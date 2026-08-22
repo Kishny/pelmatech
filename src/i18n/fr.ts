@@ -637,6 +637,33 @@ export const fr: Dictionary = {
         { name: 'Vitamine D — 1 comprimé', time: '08:00' },
         { name: 'Atorvastatine — 20mg', time: '21:00' },
       ],
+      // 2026-08-21 : chaînes "shell" pour la refonte de l'Aperçu façon
+      // ProHealth (mockup fourni par le site owner). Séparées des clés
+      // ci-dessus pour ne rien casser de ce qui était déjà branché.
+      shell: {
+        tabOverview: 'Aperçu',
+        tabDocuments: 'Documents',
+        tabMessages: 'Messages',
+        tabLabs: 'Analyses',
+        comingSoon: 'Bientôt disponible',
+        comingSoonBody: "Cette fonctionnalité n'est pas encore construite — elle arrive bientôt sur votre tableau de bord.",
+        searchPlaceholder: 'Rechercher un médicament…',
+        consultationCta: 'Consultation',
+        dailyGoalLabel: 'Objectif du jour',
+        connectedTracking: 'Suivi connecté',
+        medicationsTitle: 'Médicaments',
+        activityLabel: 'Activité (7 jours)',
+        healthReportTitle: 'Bilan de santé',
+        specializedTitle: 'Suivi spécialisé',
+        vitalsHeartRate: 'Fréquence cardiaque',
+        vitalsTemperature: 'Température',
+        vitalsOxygen: 'Oxygène (SpO2)',
+        viewMedicalProfile: 'Voir mon profil médical',
+        heroAlt: 'Patiente active, suivie avec Pelmatech',
+        heartRateValue: '72 bpm',
+        temperatureValue: '36,8°C',
+        oxygenValue: '98%',
+      },
     },
     appointments: {
       heading: ['Prenez rendez-vous', 'sans les allers-retours.'],
