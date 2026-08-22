@@ -14,7 +14,7 @@ import {
   Thermometer,
 } from 'lucide-react'
 
-import heroPhoto from '@/assets/jogging.png'
+import lungsIllustration from '@/assets/poumon.jpg'
 import { AnimatedHeading } from '@/components/AnimatedHeading'
 import { AnimatedText } from '@/components/AnimatedText'
 import { AppointmentDetailModal } from '@/components/AppointmentDetailModal'
@@ -34,12 +34,23 @@ import { cn } from '@/lib/utils'
  * owner supplied — adapted to Pelmatech's own data and green-based
  * palette per their answers: unbuilt features (Documents/Messages/Labs
  * tabs, the two smaller placeholder cards) become honest "Bientôt
- * disponible" panels instead of fake active features; the mockup's 3D
- * anatomical render is replaced with a real photo (matching
- * HealthTrackingSection's own photo-based illustration convention); and
- * the mockup's own top tab bar is kept as-is (no sidebar shell, unlike
+ * disponible" panels instead of fake active features; and the mockup's
+ * own top tab bar is kept as-is (no sidebar shell, unlike
  * doctor-dashboard.tsx — this page stays inside the regular
  * Header/Footer layout used by every other patient page).
+ *
+ * 2026-08-22: the hero card's illustration went photo -> 3D lungs render
+ * -> back to a 3D lungs render, but not the same one. First pass swapped
+ * the ProHealth mockup's blue 3D anatomical render for a real photo
+ * (jogging.png) since Pelmatech had no on-brand illustration in that
+ * style. The site owner then had a green-recolored version of that same
+ * render generated (matching --accent instead of the mockup's blue) and
+ * asked to use it after all — see poumon.jpg. The card went from a
+ * dark-photo-with-white-text treatment to a light bg-background card
+ * (the illustration's own background is a near-white that matches the
+ * site's --background token, so it sits directly on the card without a
+ * visible seam) since a light illustration doesn't support the same dark
+ * gradient + white text trick a photo does.
  *
  * Real auth guard (2026-08-19) unchanged. "Upcoming appointments" still
  * shows the soonest real booking (listMyAppointmentsAction) — now
@@ -339,17 +350,16 @@ function HeroCard({ shell, dateLocale, nextAppointment, onOpenDetail, prefersRed
   const t = useTranslation()
 
   return (
-    <div className="relative h-full min-h-[520px] overflow-hidden rounded-2xl border border-border">
-      <MaskedImage src={heroPhoto} alt={shell.heroAlt} className="absolute inset-0 h-full w-full" imgClassName="object-top" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/0 to-black/0" aria-hidden="true" />
+    <div className="relative flex h-full min-h-[520px] items-center justify-center overflow-hidden rounded-2xl border border-border bg-background p-6">
+      <MaskedImage src={lungsIllustration} alt={shell.heroAlt} className="h-full w-full" imgClassName="object-contain" />
 
-      <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-background/90 px-3 py-1.5 text-xs font-medium text-foreground shadow-sm backdrop-blur-sm">
+      <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground shadow-sm">
         <Radio className="h-3.5 w-3.5 text-accent" />
         {shell.connectedTracking}
       </div>
 
       <motion.div
-        className="absolute bottom-4 left-4 w-44 rounded-xl bg-background/95 p-3 shadow-lg backdrop-blur-sm"
+        className="absolute bottom-4 left-4 w-44 rounded-xl border border-border bg-background p-3 shadow-lg"
         animate={prefersReducedMotion ? undefined : { y: [0, -6, 0] }}
         transition={prefersReducedMotion ? undefined : { duration: 4, repeat: Infinity, ease: 'easeInOut' }}
       >
@@ -373,7 +383,7 @@ function HeroCard({ shell, dateLocale, nextAppointment, onOpenDetail, prefersRed
         <button
           type="button"
           onClick={() => onOpenDetail(nextAppointment.id)}
-          className="absolute bottom-4 right-4 w-52 rounded-xl bg-background/95 p-3 text-left shadow-lg backdrop-blur-sm transition hover:scale-[1.02]"
+          className="absolute bottom-4 right-4 w-52 rounded-xl border border-border bg-background p-3 text-left shadow-lg transition hover:scale-[1.02]"
         >
           <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
             <CalendarClock className="h-3.5 w-3.5 text-accent" />
@@ -387,7 +397,7 @@ function HeroCard({ shell, dateLocale, nextAppointment, onOpenDetail, prefersRed
       ) : (
         <Link
           to="/find-a-doctor"
-          className="absolute bottom-4 right-4 w-52 rounded-xl bg-background/95 p-3 text-left shadow-lg backdrop-blur-sm transition hover:scale-[1.02]"
+          className="absolute bottom-4 right-4 w-52 rounded-xl border border-border bg-background p-3 text-left shadow-lg transition hover:scale-[1.02]"
         >
           <div className="text-xs text-muted-foreground">{t.pages.appointments.noAppointments}</div>
           <div className="mt-1 text-sm font-semibold text-accent">{t.pages.appointments.bookNewCta}</div>

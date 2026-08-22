@@ -2,13 +2,12 @@ import * as React from 'react'
 import { createFileRoute } from '@tanstack/react-router'
 import { Mail, MapPin, Phone, Share2 } from 'lucide-react'
 
-import heroPhoto from '@/assets/hero.jpg'
+import brainIllustration from '@/assets/cerveau.jpg'
 import { AnimatedHeading } from '@/components/AnimatedHeading'
 import { AnimatedText } from '@/components/AnimatedText'
 import { Footer } from '@/components/Footer'
 import { GlowBackdrop } from '@/components/GlowBackdrop'
 import { Header } from '@/components/Header'
-import { MaskedImage } from '@/components/MaskedImage'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -46,47 +45,56 @@ function Contact() {
     <div className="bg-background text-foreground">
       <Header variant="internal" />
       <main className="pt-40 pb-32 px-8 md:px-12">
-        <div className="relative min-h-[640px] overflow-hidden rounded-2xl border border-border">
-          <MaskedImage src={heroPhoto} alt={page.heroImageAlt} className="absolute inset-0 h-full w-full" imgClassName="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/40 to-black/10" aria-hidden="true" />
+        <div className="relative overflow-hidden rounded-2xl border border-border bg-background md:min-h-[560px]">
+          <div className="pointer-events-none absolute inset-0 hidden items-center justify-center md:flex" aria-hidden="true">
+            <img
+              src={brainIllustration}
+              alt=""
+              className="w-[38%] max-w-xs select-none opacity-90 lg:max-w-sm"
+              style={{
+                maskImage: 'radial-gradient(closest-side, black 55%, transparent 85%)',
+                WebkitMaskImage: 'radial-gradient(closest-side, black 55%, transparent 85%)',
+              }}
+            />
+          </div>
 
-          <div className="relative z-10 grid grid-cols-1 gap-10 p-8 md:grid-cols-2 md:p-14 lg:p-16">
-            <div className="flex flex-col justify-between text-white">
+          <div className="relative z-10 flex flex-col gap-10 p-8 md:flex-row md:items-center md:justify-between md:p-14 lg:p-16">
+            <div className="flex flex-col justify-between md:max-w-xs md:shrink-0 lg:max-w-sm">
               <div>
-                <AnimatedHeading as="h1" className="max-w-md text-4xl md:text-5xl font-medium leading-[1.05]">
+                <AnimatedHeading as="h1" className="text-4xl md:text-5xl font-medium leading-[1.05]">
                   {page.heading[0]}
                   <br />
                   {page.heading[1]}
                 </AnimatedHeading>
-                <AnimatedText className="mt-6 max-w-sm text-base text-white/80 leading-relaxed">
+                <AnimatedText className="mt-6 text-base text-muted-foreground leading-relaxed">
                   {page.description}
                 </AnimatedText>
               </div>
 
               <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 text-sm">
                 <InfoBlock icon={MapPin} label={page.locationLabel}>
-                  <span className="rounded-full bg-white/10 px-3 py-1 text-xs text-white/70">{page.locationComingSoon}</span>
+                  <span className="rounded-full bg-muted px-3 py-1 text-xs text-muted-foreground">{page.locationComingSoon}</span>
                 </InfoBlock>
                 <InfoBlock icon={Share2} label={page.socialLabel}>
-                  <ul className="space-y-1 text-white/50">
+                  <ul className="space-y-1 text-muted-foreground">
                     {SOCIAL_LABELS.map((s) => (
                       <li key={s}>{s}</li>
                     ))}
                   </ul>
-                  <span className="mt-2 inline-block rounded-full bg-white/10 px-3 py-1 text-xs text-white/70">
+                  <span className="mt-2 inline-block rounded-full bg-muted px-3 py-1 text-xs text-muted-foreground">
                     {page.socialComingSoon}
                   </span>
                 </InfoBlock>
                 <InfoBlock icon={Mail} label={page.emailLabel}>
-                  <span className="text-white/80">{page.emailValue}</span>
+                  <span className="text-foreground">{page.emailValue}</span>
                 </InfoBlock>
                 <InfoBlock icon={Phone} label={page.phoneLabel}>
-                  <span className="text-white/80">{page.phoneValue}</span>
+                  <span className="text-foreground">{page.phoneValue}</span>
                 </InfoBlock>
               </div>
             </div>
 
-            <div className="rounded-2xl bg-background p-6 shadow-xl md:p-8">
+            <div className="w-full rounded-2xl border border-border bg-background p-6 shadow-xl md:max-w-md md:shrink-0 md:p-8">
               <h2 className="text-xl font-medium text-foreground">{page.formTitle}</h2>
               <p className="mt-2 text-sm text-muted-foreground">{page.formSubtitle}</p>
 
@@ -184,7 +192,7 @@ function InfoBlock({
 }) {
   return (
     <div>
-      <div className="flex items-center gap-2 text-white/60">
+      <div className="flex items-center gap-2 text-muted-foreground">
         <Icon className="h-4 w-4" />
         <span className="text-xs uppercase tracking-[0.15em]">{label}</span>
       </div>
