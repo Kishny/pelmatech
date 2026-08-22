@@ -501,11 +501,42 @@ export const en = {
         },
       ],
     },
+    // 2026-08-22: rebuilt to match a resort-site "Contact Us" mockup the
+    // site owner supplied (photo hero + floating form card + info panel +
+    // map section), adapted to Pelmatech. Per the site owner's answers:
+    // Pelmatech has no real address/phone/social accounts on file yet, so
+    // "location" and "social" stay honest "coming soon" placeholders, email
+    // and phone get clearly-provisional values (an @pelmatech.com address
+    // and the standard fake-555 phone pattern) instead of invented real
+    // contact details, and the map section is a "coming soon" panel too.
     contact: {
-      heading: "Let's talk.",
+      heading: ['You Have Questions,', 'We Have Answers.'],
       description:
-        'Questions about Pelmatech, partnerships, or joining as a professional — send us a message and our team will follow up.',
-      fields: { name: 'Name', email: 'Email', phone: 'Phone', reason: 'Reason for contact', message: 'Message' },
+        'Questions about Pelmatech, booking, or joining as a professional — send us a message and our team will follow up.',
+      heroImageAlt: 'A doctor reassuring a patient in a sunlit consultation room',
+      locationLabel: 'Location',
+      locationComingSoon: 'Coming soon',
+      socialLabel: 'Social media',
+      socialComingSoon: 'Coming soon',
+      emailLabel: 'Email',
+      emailValue: 'hello@pelmatech.com',
+      phoneLabel: 'Phone',
+      phoneValue: '+1 (555) 123-4567',
+      formTitle: 'Tell Us What You Need',
+      formSubtitle: 'Our team is ready to assist you with every detail, big or small.',
+      fields: {
+        firstName: 'First Name',
+        lastName: 'Last Name',
+        country: 'Country',
+        phone: 'Phone Number',
+        email: 'Email Address',
+        message: 'Message',
+      },
+      inquiryLabel: 'Type of Inquiry',
+      inquiryOptions: ['Appointment', 'General', 'Partnership', 'Other'],
+      consentLabel: "I'd like to receive health tips and updates from Pelmatech.",
+      mapTitle: 'Find us',
+      mapComingSoon: 'Map coming soon',
     },
     faq: {
       heading: ['Questions,', 'answered clearly.'],

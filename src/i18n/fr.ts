@@ -520,11 +520,43 @@ export const fr: Dictionary = {
         },
       ],
     },
+    // 2026-08-22 : reconstruite pour coller au mockup "Contact Us" d'un
+    // site de resort fourni par le site owner (photo en fond + carte
+    // formulaire flottante + bloc d'infos + section carte), adapté à
+    // Pelmatech. Suivant ses réponses : Pelmatech n'a ni adresse, ni
+    // téléphone, ni compte social réel pour l'instant, donc "Localisation"
+    // et "Réseaux sociaux" restent des blocs honnêtes "Bientôt disponible",
+    // email/téléphone reçoivent des valeurs clairement provisoires (une
+    // adresse @pelmatech.com et le classique numéro factice en 555), et la
+    // section carte est elle aussi un panneau "Bientôt disponible".
     contact: {
-      heading: 'Parlons-en.',
+      heading: ['Vous avez des questions,', 'nous avons des réponses.'],
       description:
-        'Questions sur Pelmatech, partenariats, ou envie de nous rejoindre en tant que professionnel — envoyez-nous un message et notre équipe reviendra vers vous.',
-      fields: { name: 'Nom', email: 'Email', phone: 'Téléphone', reason: 'Motif du contact', message: 'Message' },
+        'Questions sur Pelmatech, une prise de rendez-vous, ou envie de nous rejoindre en tant que professionnel — envoyez-nous un message et notre équipe reviendra vers vous.',
+      heroImageAlt: 'Un médecin rassurant une patiente dans une salle de consultation baignée de lumière',
+      locationLabel: 'Localisation',
+      locationComingSoon: 'Bientôt disponible',
+      socialLabel: 'Réseaux sociaux',
+      socialComingSoon: 'Bientôt disponible',
+      emailLabel: 'Email',
+      emailValue: 'hello@pelmatech.com',
+      phoneLabel: 'Téléphone',
+      phoneValue: '+1 (555) 123-4567',
+      formTitle: 'Dites-nous ce dont vous avez besoin',
+      formSubtitle: 'Notre équipe est là pour vous accompagner, à chaque étape.',
+      fields: {
+        firstName: 'Prénom',
+        lastName: 'Nom',
+        country: 'Pays',
+        phone: 'Numéro de téléphone',
+        email: 'Adresse email',
+        message: 'Message',
+      },
+      inquiryLabel: 'Type de demande',
+      inquiryOptions: ['Rendez-vous', 'Général', 'Partenariat', 'Autre'],
+      consentLabel: 'Je souhaite recevoir des conseils santé et actualités de Pelmatech.',
+      mapTitle: 'Nous trouver',
+      mapComingSoon: 'Carte bientôt disponible',
     },
     faq: {
       heading: ['Vos questions,', 'nos réponses claires.'],
